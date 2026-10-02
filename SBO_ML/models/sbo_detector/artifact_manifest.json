@@ -1,0 +1,62 @@
+{
+  "DecisionTree.joblib": {
+    "original_bytes": 205465,
+    "compressed_bytes": 44593,
+    "original_sha256": "0b8a7c0bc44489ad52eecd36b93999b651510fec6fd0537e48eacfbcaa596676",
+    "compressed_sha256": "546712e51247f5395fd8bf4a325a4db77d85858cbae2ef572ebdeac25a5bfad7"
+  },
+  "DYNAMIC_GATE_RandomForest_PLUS_DecisionTree.joblib": {
+    "original_bytes": 5089,
+    "compressed_bytes": 3101,
+    "original_sha256": "e774428d6a89becea10d54a5f990ec76b0a7d4e24c065e4a55741a3745749be7",
+    "compressed_sha256": "cc3fe90811b35f5d890ffa9788b87f369fa3f8350c9c0b5f01d493f102b35d2f"
+  },
+  "DYNAMIC_GATE_RandomForest_PLUS_XGBoost.joblib": {
+    "original_bytes": 5057,
+    "compressed_bytes": 3094,
+    "original_sha256": "f417f01f3331b81abf6decb42a0bd92a5e1d5b24b8d4c3384899f8b38259b820",
+    "compressed_sha256": "5b3441e0cfdf92dc6cfd239b478ed65bf2d3ee239b6948bbb5177b5d78e3cb2e"
+  },
+  "DYNAMIC_GATE_XGBoost_PLUS_DecisionTree.joblib": {
+    "original_bytes": 5057,
+    "compressed_bytes": 3101,
+    "original_sha256": "da14987bf1ab3ad380266f54d7a1ccf8f0e0023aea5c37055edd2fc8dc7e6221",
+    "compressed_sha256": "4f52649c9f532cbc9b5646b3111012af743c6a5dc4a1673f9b08a3469755174f"
+  },
+  "LogisticRegression.joblib": {
+    "original_bytes": 18049,
+    "compressed_bytes": 11238,
+    "original_sha256": "9ad7d4f0c0c3f5a7a79a62f702a051585c4e98bf1819008451a521306082c78f",
+    "compressed_sha256": "9b4a9c98d494a08fc90e6c03f2767afbacc5bf25fec0ecbfc63863ab569aeddd"
+  },
+  "RandomForest.joblib": {
+    "original_bytes": 71178169,
+    "compressed_bytes": 17352721,
+    "original_sha256": "28103dbd3a219dfd3d6c4361d80f9191ce084d1fed59aca8e10c941475a0d00e",
+    "compressed_sha256": "de8cc4168cfe651296aecc590e46b1ed7c3773969293e0ab492fdcf9596a37f2"
+  },
+  "SOFTMAX_GATE_RF_XGB_DT.joblib": {
+    "original_bytes": 6401,
+    "compressed_bytes": 4286,
+    "original_sha256": "5f528aca9e11a7e40921bd9d4ceceffe84792efd4ae1c410ce55628834af5779",
+    "compressed_sha256": "60b622bc4b964c536160e37ea9058fc9eb7c969d2e8312569a8cc86ba5fd9025"
+  },
+  "STACK_LOGISTIC_PROB_ONLY.joblib": {
+    "original_bytes": 2817,
+    "compressed_bytes": 1682,
+    "original_sha256": "405033070a6c599ac07164eac4e2a2d75465614a754abd0178c53d0b1bd23f3b",
+    "compressed_sha256": "994de27b686da866667cfee27d09882eefeac89f6f0983755fb3d184094632ad"
+  },
+  "STACK_LOGISTIC_PROB_RISK.joblib": {
+    "original_bytes": 5985,
+    "compressed_bytes": 3631,
+    "original_sha256": "e32233e8c29184e0f663ef5154fb039f2f10d3496af70acac8691e44c328c5be",
+    "compressed_sha256": "d5c73acd601bd19007e2e4f8dbb8170841b9f92c619e96ddb5688756aa677ab9"
+  },
+  "XGBoost.joblib": {
+    "original_bytes": 901742,
+    "compressed_bytes": 242702,
+    "original_sha256": "e45bad8f933e04d3b752a93927b323c6c6abb379c8705764150aa28fc41cdbc8",
+    "compressed_sha256": "59bcffc1332f16bfc22c4a702c510561952881c5b6cd0ac6db579613ef9458c3"
+  }
+}

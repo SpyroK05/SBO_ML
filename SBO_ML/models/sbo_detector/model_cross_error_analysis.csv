@@ -1,0 +1,13 @@
+base_model,helper_model,base_FN_helper_TP,base_FP_helper_TN,base_TP_helper_FN,base_TN_helper_FP,both_FN,both_FP
+LogisticRegression,DecisionTree,302,865,57,176,51,640
+LogisticRegression,RandomForest,293,884,57,154,60,621
+LogisticRegression,XGBoost,273,793,65,142,80,712
+DecisionTree,LogisticRegression,57,176,302,865,51,640
+DecisionTree,RandomForest,25,61,34,20,83,755
+DecisionTree,XGBoost,52,93,89,131,56,723
+RandomForest,LogisticRegression,57,154,293,884,60,621
+RandomForest,DecisionTree,34,20,25,61,83,755
+RandomForest,XGBoost,46,67,74,146,71,708
+XGBoost,LogisticRegression,65,142,273,793,80,712
+XGBoost,DecisionTree,89,131,52,93,56,723
+XGBoost,RandomForest,74,146,46,67,71,708

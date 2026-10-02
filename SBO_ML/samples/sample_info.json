@@ -1,0 +1,13 @@
+{
+  "source": "sample_feature_dataset.csv in original archive",
+  "source_label_counts": {
+    "0": 23015,
+    "1": 13948
+  },
+  "sample_label_counts": {
+    "0": 100,
+    "1": 100
+  },
+  "seed": 42,
+  "purpose": "UI demonstration only; not a held-out evaluation set"
+}

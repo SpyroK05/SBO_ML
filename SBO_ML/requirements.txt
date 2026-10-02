@@ -1,0 +1,8 @@
+# scikit-learn version recorded inside the supplied estimators.
+scikit-learn==1.6.1
+# Remaining versions observed in the original archive's .venv metadata.
+streamlit==1.58.0
+pandas==3.0.3
+numpy==2.5.0
+joblib==1.5.3
+xgboost==3.3.0

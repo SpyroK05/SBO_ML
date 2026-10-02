@@ -1,0 +1,29 @@
+{
+  "data": "outputs/features/v6_pruned/dataset_v6_pruned_score_corr_top260.csv",
+  "split_used": "stratified_group_by_binary_core",
+  "group_col": "source_core",
+  "train_shape": [
+    22010,
+    260
+  ],
+  "val_shape": [
+    7507,
+    260
+  ],
+  "meta_val_shape": [
+    3753,
+    260
+  ],
+  "select_val_shape": [
+    3754,
+    260
+  ],
+  "test_shape": [
+    7446,
+    260
+  ],
+  "feature_count": 260,
+  "risk_safe_meta_feature_count": 47,
+  "recall_min": 0.95,
+  "weight_step": 0.05
+}

@@ -1,0 +1,21 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+runtime/
+*.log
+*.zip
+models/**/test_predictions.csv
+samples/dataset_*.csv
+# Local/Kaggle training outputs, datasets, and fitted models.
+experiments/
+training/outputs/
+data/
+.ipynb_checkpoints/

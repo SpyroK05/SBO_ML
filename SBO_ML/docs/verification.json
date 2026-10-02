@@ -1,0 +1,135 @@
+{
+  "python": "3.14.0",
+  "sklearn": "1.8.0",
+  "python_sources_parsed": 5,
+  "unit_tests": "6 passed (python -m unittest discover -s tests -v)",
+  "smoke_tests": {
+    "RandomForest": "200 predictions valid; identical to original artifact in same runtime",
+    "WEIGHT_RF_DT": "200 predictions valid",
+    "WEIGHT_RF_XGB": "200 predictions valid",
+    "DecisionTree": "200 predictions valid; identical to original artifact in same runtime",
+    "LogisticRegression": "200 predictions valid; identical to original artifact in same runtime"
+  },
+  "model_load_errors": {
+    "XGBoost": "No module named 'xgboost'"
+  },
+  "warnings": [
+    "Trying to unpickle estimator DecisionTreeClassifier from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+    "Trying to unpickle estimator LogisticRegression from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+    "Trying to unpickle estimator Pipeline from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+    "Trying to unpickle estimator RandomForestClassifier from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+    "Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations"
+  ],
+  "saved_prediction_rows": 7446,
+  "saved_metrics_crosscheck": {
+    "STACK_LOGISTIC_PROB_RISK": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2706,
+        "test_tn": 3839,
+        "test_fp": 825,
+        "test_fn": 76
+      }
+    },
+    "RandomForest": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2665,
+        "test_tn": 3889,
+        "test_fp": 775,
+        "test_fn": 117
+      }
+    },
+    "WEIGHT_RF_XGB_DT": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2679,
+        "test_tn": 3865,
+        "test_fp": 799,
+        "test_fn": 103
+      }
+    },
+    "WEIGHT_ALL4": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2679,
+        "test_tn": 3865,
+        "test_fp": 799,
+        "test_fn": 103
+      }
+    },
+    "STACK_LOGISTIC_PROB_ONLY": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2642,
+        "test_tn": 3913,
+        "test_fp": 751,
+        "test_fn": 140
+      }
+    },
+    "SOFTMAX_GATE_RF_XGB_DT": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2655,
+        "test_tn": 3886,
+        "test_fp": 778,
+        "test_fn": 127
+      }
+    },
+    "DecisionTree": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2674,
+        "test_tn": 3848,
+        "test_fp": 816,
+        "test_fn": 108
+      }
+    },
+    "XGBoost": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2637,
+        "test_tn": 3810,
+        "test_fp": 854,
+        "test_fn": 145
+      }
+    },
+    "LogisticRegression": {
+      "matches_saved_confusion_matrix": true,
+      "measured": {
+        "test_tp": 2429,
+        "test_tn": 3159,
+        "test_fp": 1505,
+        "test_fn": 353
+      }
+    }
+  },
+  "nonzero_schema_features": [
+    "sinks_v4_guard_quality_score_nonzero",
+    "sinks_v6_callsite_risk_minus_safe_nonzero",
+    "sinks_v6_callsite_safe_score_nonzero",
+    "sinks_v4_risk_minus_safe_nonzero",
+    "sinks_v6_dst_is_stack_buffer_nonzero",
+    "sinks_v4_safe_score_nonzero",
+    "sinks_v6_size_to_dst_ratio_nonzero",
+    "sinks_v6_callsite_risk_score_nonzero",
+    "sinks_src_overflow_margin_nonzero",
+    "sinks_guard_mentions_src_nonzero",
+    "sinks_v4_risk_score_nonzero",
+    "sinks_dst_stack_offset_nonzero",
+    "sinks_overflow_margin_nonzero",
+    "sinks_src_size_est_nonzero",
+    "sinks_v6_src_is_stack_buffer_nonzero",
+    "sinks_v6_size_arg_unknown_nonzero",
+    "sinks_size_to_dst_ratio_nonzero",
+    "sinks_v6_dst_via_alias_nonzero",
+    "sinks_v6_safe_proof_nonzero"
+  ],
+  "not_verified": [
+    "Streamlit UI (package unavailable)",
+    "XGBoost inference (package unavailable)",
+    "Ghidra Java compilation and ELF end-to-end execution",
+    "Training, split integrity, feature selection, external generalization",
+    "Clean installation of pinned original dependencies"
+  ]
+}

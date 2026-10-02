@@ -1,0 +1,28 @@
+{
+  "runtime_sklearn": "1.8.0",
+  "data_rows": 36963,
+  "historical_outer_test_rows_reconstructed": 7390,
+  "historical_outer_test_group_set_matches_saved_predictions": false,
+  "historical_selector_train_rows_in_reconstructed_test": 5854,
+  "historical_test_rows_whose_group_is_in_selector_train": 6026,
+  "historical_meta_select_overlapping_groups": 710,
+  "historical_selector_seed": 1337,
+  "historical_trainer_seed": 42,
+  "reconstruction_caveat": "scikit-learn 1.8 reconstruction does not match the saved 1.6.1 test split. Overlap counts here are diagnostic simulations, not verified historical counts.",
+  "new_protocol_partition_counts": {
+    "train": 22180,
+    "meta": 3693,
+    "select": 3700,
+    "test": 7390
+  },
+  "new_protocol_group_overlap": 0,
+  "unit_tests": "11 passed; see command in docs/TRAINING_KAGGLE.md",
+  "python_sources_parsed": 16,
+  "notebook_code_cells_parsed": 7,
+  "not_run": [
+    "Full feature selection and training on Kaggle",
+    "Re-training of original 260 or 160 models",
+    "Corrected protocol benchmark; original 654-column input CSV not provided",
+    "Streamlit/Ghidra/XGBoost end-to-end execution"
+  ]
+}

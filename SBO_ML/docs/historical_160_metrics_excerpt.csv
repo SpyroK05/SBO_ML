@@ -1,0 +1,4 @@
+model,feature_count,precision,recall,f1,false_positives,false_negatives,source
+WEIGHT_RF_DT,160,0.761538,0.960820,0.849650,837,109,user_supplied_kaggle_log_not_rerun
+RandomForest,160,0.761552,0.959741,0.849237,836,112,user_supplied_kaggle_log_not_rerun
+STACK_LOGISTIC_PROB_RISK,160,0.754332,0.970165,0.848742,879,83,user_supplied_kaggle_log_not_rerun

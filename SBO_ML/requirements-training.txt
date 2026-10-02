@@ -1,0 +1,8 @@
+# Versions printed in the supplied Kaggle training log.
+scikit-learn==1.6.1
+pandas==2.3.3
+xgboost==3.2.0
+# Exact historical versions were not supplied for these packages.
+numpy>=1.26,<3
+joblib>=1.4,<2
+matplotlib>=3.8,<4

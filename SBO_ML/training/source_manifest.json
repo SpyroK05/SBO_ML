@@ -1,0 +1,43 @@
+{
+  "source": "User-pasted Kaggle code and run logs",
+  "source_sha256": "4976ee8c6473c23304cbaaed5b71eb816f801d4c04a0c47e65c736c2e0a7a2a4",
+  "files": {
+    "train_sbo_v5_ensemble_suite_kaggle.py": {
+      "extracted_code_sha256": "a99ac62ae127bf5668cef18ea388a1ece4a08b8263c9168b06a51fc08dbddfdf",
+      "lines": 942,
+      "packaged_code_sha256": "cb36af2f3eb4a0e56b7968004c6ea40751eda1a56cf57148f3a5f131dd77d539",
+      "modified_after_extraction": true
+    },
+    "make_v6_noise_pruned_datasets.py": {
+      "extracted_code_sha256": "0be1ec9b5284c4ba14a83678abb9628eda12d6d9dca1afa674200a4a68a9244e",
+      "lines": 361,
+      "packaged_code_sha256": "0be1ec9b5284c4ba14a83678abb9628eda12d6d9dca1afa674200a4a68a9244e",
+      "modified_after_extraction": false
+    },
+    "analyze_v6_top260_components.py": {
+      "extracted_code_sha256": "9d6a9c58294789b6199424202e30f2afaed46af18026b6730dd9bb65b3eb81a7",
+      "lines": 195,
+      "packaged_code_sha256": "9d6a9c58294789b6199424202e30f2afaed46af18026b6730dd9bb65b3eb81a7",
+      "modified_after_extraction": false
+    },
+    "make_top260_group_drop_ablation.py": {
+      "extracted_code_sha256": "967b29c81a506fb08b1dee0b19c247521581d221a4d1bf4e30a95262a4c3382d",
+      "lines": 108,
+      "packaged_code_sha256": "967b29c81a506fb08b1dee0b19c247521581d221a4d1bf4e30a95262a4c3382d",
+      "modified_after_extraction": false
+    },
+    "export_feature_inventory_for_review.py": {
+      "extracted_code_sha256": "e8e4d13a145a501b234eff19dd7f020ff42c6cbd4f2fd6e8507d3381e1232c1d",
+      "lines": 496,
+      "packaged_code_sha256": "e8e4d13a145a501b234eff19dd7f020ff42c6cbd4f2fd6e8507d3381e1232c1d",
+      "modified_after_extraction": false
+    },
+    "select_final_security_features.py": {
+      "extracted_code_sha256": "6e94df6bc0d415f2fb6d0593104de33e25ab6a472b2ae7acfc1d80a4306dc6c4",
+      "lines": 293,
+      "packaged_code_sha256": "4a6e7c5a0a47ff561668d73c590655d2eabd01d5b4a88f510be660bfa9d2a40d",
+      "modified_after_extraction": true
+    }
+  },
+  "code_hash_format": "UTF-8 text with normalized LF newlines"
+}
