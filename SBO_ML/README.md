@@ -1,30 +1,22 @@
 # SBO Detector
 
-Demo nghiên cứu phát hiện **nguy cơ Stack Buffer Overflow ở mức hàm** bằng đặc trưng phân tích tĩnh và machine learning. Có hai luồng: đọc CSV đặc trưng hoặc phân tích ELF bằng Ghidra rồi dự đoán.
+SBO Detector là dự án nghiên cứu sử dụng phân tích tĩnh và học máy để sàng lọc nguy cơ **Stack Buffer Overflow (SBO)** trong chương trình ELF. Mục tiêu của dự án là giúp người phân tích xác định những hàm cần kiểm tra trước, dựa trên đặc trưng trích xuất bằng Ghidra.
 
-**Trạng thái:** bản demo đã tinh gọn để chia sẻ mã nguồn. Chưa phải công cụ xác nhận lỗ hổng; cần kiểm tra thủ công các cảnh báo. Chưa kiểm thử toàn bộ luồng ELF trong môi trường đóng gói.
+Bạn có thể thử các model bằng CSV mẫu đi kèm, phân tích một file ELF của mình, hoặc sử dụng notebook để huấn luyện trên Kaggle. Giao diện được xây dựng bằng Streamlit và hỗ trợ tải kết quả về dưới dạng CSV.
 
-## Tính năng
+Dự án đang trong quá trình hoàn thiện. Kết quả dự đoán cần được đối chiếu với mã và bằng chứng phân tích; một hàm không bị cảnh báo vẫn có thể chứa lỗi.
 
-- Giao diện Streamlit, xuất kết quả CSV.
-- 260 đặc trưng; Random Forest, Decision Tree, XGBoost, Logistic Regression và weighted voting.
-- Trích xuất đặc trưng từ ELF bằng Ghidra headless và script Java.
-- Dữ liệu demo 200 hàm, 100 dòng mỗi lớp; đây không phải tập đánh giá độc lập.
-- Lưu toàn bộ artifact model gốc dưới dạng nén không mất dữ liệu; có SHA-256 để kiểm tra.
+## Bắt đầu từ đâu?
 
-Stacking và dynamic gating được giữ dưới dạng artifact nghiên cứu. Mã train Kaggle và công thức ensemble đã được bổ sung, nhưng chưa tích hợp/kiểm chứng suy luận các model này trong app nên chúng chưa có trong danh sách dự đoán. Xem [đánh giá kỹ thuật ban đầu](docs/REVIEW_VI.md) và [đánh giá phát triển cập nhật](docs/DEVELOPMENT_ASSESSMENT_VI.md).
-
-## Huấn luyện trên web (Kaggle)
-
-Mở [SBO_Kaggle_Training.ipynb](notebooks/SBO_Kaggle_Training.ipynb) trên Kaggle và cung cấp CSV dữ liệu gốc. Notebook đã nhúng mã train; hỗ trợ thử 260 hoặc 160 đặc trưng, chia nhóm trước khi chọn feature và xuất model/schema/metrics/split manifest. [Hướng dẫn chi tiết](docs/TRAINING_KAGGLE.md).
-
-Mã lịch sử có nguy cơ rò rỉ dữ liệu qua chọn feature, đặc biệt nhánh 160 dùng nhãn toàn bộ dataset để audit/chọn cột. Số liệu cũ bên dưới là kết quả thăm dò; chưa có kết quả huấn luyện lại theo protocol mới. Bộ dữ liệu gốc 654 cột chưa được cung cấp trong repository.
+- **Muốn xem thử ứng dụng:** chạy demo CSV bên dưới. Cách này không cần cài Ghidra.
+- **Muốn phân tích ELF:** cài thêm Ghidra và làm theo mục Phân tích ELF.
+- **Muốn huấn luyện lại:** mở notebook Kaggle và chuẩn bị bộ dữ liệu gốc.
 
 ## Chạy demo CSV
 
-Môi trường gốc trong ZIP sử dụng Python 3.13 trên Linux. `requirements.txt` ghi lại phiên bản trực tiếp từ metadata của môi trường gốc và scikit-learn 1.6.1 từ model. Chưa xác nhận cài mới được toàn bộ các phiên bản này trên một máy sạch; không phải lockfile đầy đủ.
+Các lệnh dưới đây dành cho Linux hoặc WSL. Môi trường ứng dụng ban đầu dùng Python 3.13; các phiên bản thư viện được ghi trong `requirements.txt`. Việc cài mới toàn bộ môi trường này chưa được kiểm chứng trên máy sạch.
 
-Tại thư mục dự án:
+Mở terminal tại thư mục dự án và chạy:
 
 ```bash
 python3.13 -m venv .venv
@@ -33,20 +25,42 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-Ứng dụng tự nạp 200 dòng mẫu nếu chưa tải CSV lên. Model mặc định là Random Forest. CSV cần có đầy đủ các cột trong `models/sbo_detector/feature_columns.json`; thứ tự cột được tự căn chỉnh. Giá trị trống/vô hạn được điền 0 như bản gốc; cột thiếu hoặc văn bản không phải số sẽ báo lỗi.
+Sau đó mở địa chỉ mà Streamlit hiển thị trong terminal.
 
-CSV có thể chạy riêng, không cần Ghidra. Nếu một model không nạp được, app hiển thị lỗi và ẩn các lựa chọn phụ thuộc vào model đó; không tự chuyển sang mô hình khác để trả kết quả.
+Ứng dụng sẽ tự nạp 200 dòng dữ liệu mẫu và chọn Random Forest làm model mặc định. Bạn có thể đổi model, điều chỉnh ngưỡng cảnh báo và tải bảng kết quả về để xem lại. Dữ liệu mẫu chỉ dùng để thử giao diện, không phải một tập test độc lập.
+
+Nếu dùng CSV riêng, file cần có đủ 260 cột đặc trưng trong [feature_columns.json](models/sbo_detector/feature_columns.json). Các cột được tự sắp xếp theo thứ tự model yêu cầu. Giá trị trống hoặc vô hạn được thay bằng 0; thiếu cột hoặc có văn bản trong cột đặc trưng sẽ báo lỗi.
+
+Các model hiện có thể chọn trong app gồm Random Forest, Decision Tree, XGBoost, Logistic Regression và weighted voting. Nếu model nào không nạp được, ứng dụng sẽ hiển thị lỗi và ẩn những lựa chọn phụ thuộc vào model đó.
 
 ## Phân tích ELF
 
-Cần Ghidra và JDK tương thích với bản Ghidra đang dùng. Luồng này giữ cách chạy Linux của dự án gốc; khi dùng Windows, nên chạy trong môi trường Linux/WSL đã cài đủ công cụ.
+Bạn cần cài Ghidra cùng JDK phù hợp với phiên bản Ghidra đang dùng. Luồng phân tích hiện được thiết kế cho Linux; nếu dùng Windows, hãy chuẩn bị môi trường WSL để chạy phần này.
+
+Khai báo đường dẫn đến `analyzeHeadless`, thay đường dẫn ví dụ bằng vị trí cài Ghidra trên máy:
 
 ```bash
 export GHIDRA_HEADLESS=/path/to/ghidra/support/analyzeHeadless
 python -m streamlit run app.py
 ```
 
-Mở trang **Upload ELF**, chọn ELF và chạy phân tích. Có thể chạy riêng bước trích xuất:
+Trong ứng dụng:
+
+1. Mở trang **Upload ELF**.
+2. Kiểm tra đường dẫn Ghidra và thư mục model.
+3. Chọn file ELF, model và ngưỡng cảnh báo.
+4. Nhấn **Chạy Ghidra và dự đoán**.
+5. Xem kết quả theo hàm, các bằng chứng liên quan và tải báo cáo CSV nếu cần.
+
+Luồng xử lý:
+
+```text
+ELF → Ghidra → đặc trưng của từng hàm → model → bảng kết quả
+```
+
+Ứng dụng phân tích tĩnh, không chạy chương trình ELF được tải lên. File đầu vào và kết quả được lưu trong `runtime/`; thư mục này đã được loại khỏi Git.
+
+Bạn cũng có thể chạy riêng bước trích xuất đặc trưng:
 
 ```bash
 python scripts/elf_to_features_generic.py \
@@ -57,57 +71,47 @@ python scripts/elf_to_features_generic.py \
   --script-dir ghidra_scripts
 ```
 
-Extractor căn schema và điền 0 cho các cột không sinh được. Danh sách cột thiếu được ghi trong file `.info.json` và hiển thị trên trang ELF. Cần kiểm tra lại sự tương đương với pipeline huấn luyện trước khi dùng kết quả để kết luận. Đặc biệt, vectorizer gốc chưa tính các thống kê `*_nonzero` có trong schema.
+**Lưu ý khi đọc kết quả:** một số đặc trưng, trong đó có các thống kê `*_nonzero`, chưa được vectorizer ELF sinh đầy đủ. Các cột thiếu được điền 0 và liệt kê trong file `.info.json`. Cần kiểm tra cảnh báo này trước khi sử dụng kết quả để đánh giá một binary.
 
-Chế độ **Kết hợp điểm luật tĩnh** mặc định tắt. Khi bật, kết quả là `max(model_prob, static_finding_score)`, một điểm ưu tiên kiểm tra, không phải xác suất đã hiệu chuẩn. Các benchmark bên dưới không đánh giá chế độ này. Nhãn `SAFE` còn có trong trang ELF kế thừa từ bản gốc chỉ có nghĩa là dưới ngưỡng cảnh báo.
+Tùy chọn **Kết hợp điểm luật tĩnh** mặc định tắt. Khi bật, điểm hiển thị kết hợp đầu ra ML với các luật phân tích; điểm này chưa được hiệu chuẩn thành xác suất. Nhãn `SAFE` trên trang ELF chỉ có nghĩa là dưới ngưỡng cảnh báo.
 
-Chỉ nạp các file model `.joblib` có nguồn đáng tin cậy. Luồng ELF dùng phân tích tĩnh, không chạy chương trình được tải lên. Thư mục `runtime/` chứa đầu vào/kết quả cục bộ và được bỏ qua bởi Git.
+## Huấn luyện trên Kaggle
 
-## Kết quả được cung cấp trong archive
+Mở [SBO_Kaggle_Training.ipynb](notebooks/SBO_Kaggle_Training.ipynb) trong Kaggle. Notebook đã chứa mã cần thiết; bạn chỉ cần cung cấp CSV gốc `dataset_labeled_sbo_rich_v6_context_clean.csv`, hoặc file `.tar.gz` chứa CSV đó.
 
-Tập test có 7.446 hàm. `run_info.json` ghi train/validation/test lần lượt là 22.010 / 7.507 / 7.446 dòng và cách chia theo nhóm `source_core`. Mã huấn luyện được bổ sung từ phiên Kaggle, nhưng chưa có manifest của lần chạy lịch sử để kiểm chứng độc lập. Protocol mới lưu manifest cho các lần train tiếp theo.
+Bộ dữ liệu gốc 654 cột không nằm trong repository. Không dùng CSV mẫu 200 dòng để thay thế khi đánh giá chất lượng model.
+
+Notebook hỗ trợ thử nghiệm với 260 hoặc 160 đặc trưng. Quy trình mới chia nhóm dữ liệu trước khi chọn đặc trưng, sau đó lưu model, danh sách feature, metrics và thông tin phân chia dữ liệu để tiện kiểm tra lại.
+
+Xem [hướng dẫn huấn luyện](docs/TRAINING_KAGGLE.md) để biết cách cấu hình, yêu cầu thư viện và xuất kết quả. Khi sử dụng model mới trong app, cần cập nhật đồng bộ model, schema, metrics và dữ liệu mẫu tương ứng.
+
+## Kết quả thử nghiệm
+
+Bảng dưới là kết quả đã lưu của lần thử nghiệm với 260 đặc trưng, trên tập test gồm 7.446 hàm:
 
 | Model | Precision | Recall | F1 | ROC-AUC |
 |---|---:|---:|---:|---:|
 | Random Forest | 77,47% | 95,79% | 85,66% | 0,9677 |
 | Decision Tree | 76,62% | 96,12% | 85,27% | 0,9605 |
 | XGBoost | 75,54% | 94,79% | 84,07% | 0,9615 |
-| Stacking + risk (tham khảo) | 76,64% | 97,27% | 85,73% | 0,9682 |
+| Stacking + risk | 76,64% | 97,27% | 85,73% | 0,9682 |
 
-Đây là số liệu lưu sẵn, không phải kết quả tái huấn luyện. Đã đối chiếu confusion matrix của 9 model có cột xác suất tương ứng trong `test_predictions.csv` gốc; cả 9 khớp. File dự đoán đầy đủ được bỏ khỏi bản gọn.
+Các số liệu này được giữ để tham khảo. Quy trình chọn đặc trưng trước đây có nguy cơ rò rỉ thông tin giữa dữ liệu dùng để phát triển model và tập test. Chưa có kết quả huấn luyện lại theo quy trình chia nhóm mới, nên chưa dùng bảng này để khẳng định hiệu quả trên phần mềm thực tế.
 
-## Cấu trúc
+Mã huấn luyện và model stacking/gating có trong repository, nhưng phần suy luận của chúng chưa được tích hợp và kiểm chứng trong app.
+
+## Cấu trúc dự án
 
 ```text
-app.py                         Giao diện CSV
-sbo_core.py                    Suy luận dùng chung
-pages/1_Upload_ELF.py           Giao diện ELF và phân tích bằng luật
-scripts/elf_to_features_generic.py
-ghidra_scripts/ExtractSBOFeatureRaw.java
-models/sbo_detector/            Model nén, schema và metrics
-samples/                       200 dòng demo và thông tin lấy mẫu
-tests/                         Kiểm tra hồi quy phần suy luận
-training/                      Train, chọn feature, audit và protocol chia nhóm
-notebooks/                     Notebook Kaggle độc lập
-docs/                          Đánh giá và kết quả kiểm tra
+app.py                    Giao diện dự đoán từ CSV
+sbo_core.py               Phần suy luận dùng chung
+pages/                    Trang phân tích ELF
+scripts/                  Chuyển kết quả Ghidra thành CSV đặc trưng
+ghidra_scripts/           Script trích xuất đặc trưng bằng Ghidra
+models/sbo_detector/      Model, schema và kết quả thử nghiệm
+samples/                  Dữ liệu để chạy thử
+training/                 Mã huấn luyện, chọn đặc trưng và phân tích
+notebooks/                Notebook Kaggle
+tests/                    Các bài kiểm tra tự động
+docs/                     Hướng dẫn và ghi nhận kỹ thuật
 ```
-
-## Kiểm tra và giới hạn
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-Đã chạy 11 bài kiểm tra, gồm 5 kiểm tra protocol huấn luyện mới và 6 kiểm tra suy luận: trọng số và thứ tự lớp, thiếu model thành phần, loại ensemble chưa hỗ trợ, thiếu feature, giá trị không hợp lệ, và toàn vẹn model nén. Random Forest, Decision Tree, Logistic Regression dự đoán trên 200 dòng mẫu trùng với artifact gốc trong cùng môi trường kiểm tra; hai weighted ensemble khả dụng cũng chạy thành công.
-
-Môi trường kiểm tra có Python 3.14 / scikit-learn 1.8.0, khác môi trường huấn luyện; các kiểm tra này không thay thế việc chạy lại bằng scikit-learn 1.6.1. Chưa chạy giao diện Streamlit, XGBoost, biên dịch Java hoặc luồng Ghidra hoàn chỉnh vì môi trường kiểm tra thiếu các thành phần đó. Chi tiết kiểm tra demo trước khi thêm mã train: [verification.json](docs/verification.json). Kiểm tra mới: [training_verification.json](docs/training_verification.json).
-
-## Đưa lên GitHub
-
-Giải nén bản gọn và đưa **nội dung thư mục dự án** lên repository. Giữ các file `.gitignore` và `.gitattributes`; không chép lại `.venv` hoặc thư mục `runtime`.
-
-Mô tả repository gợi ý: **Function-level stack buffer overflow risk screening with Ghidra, machine learning, and Streamlit.**
-
-## Nguồn dữ liệu và giấy phép
-
-Tên mẫu trong archive có dạng `CWE121_Stack_Based_Buffer_Overflow__...`, nhưng không có tài liệu nguồn dữ liệu hay LICENSE kèm theo. Bản gọn giữ nguyên thông tin hiện có và chưa tự gán giấy phép. Tác giả cần bổ sung nguồn dữ liệu, quyền phân phối model/dữ liệu và giấy phép phù hợp cho mã nguồn trước khi công bố như một dự án mã nguồn mở.
